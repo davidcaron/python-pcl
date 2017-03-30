@@ -513,6 +513,18 @@ cdef class PointCloud:
         cNormalEstimation.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
         return normalEstimation
 
+    def make_NormalEstimationOMP(self):
+        normalEstimation = NormalEstimationOMP()
+        cdef pclftr.NormalEstimationOMP_t *cNormalEstimation = <pclftr.NormalEstimationOMP_t *>normalEstimation.me
+        cNormalEstimation.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return normalEstimation
+
+    def make_RegionGrowing(self):
+        regionGrowing = RegionGrowing()
+        cdef pclseg.RegionGrowing_t *cRegionGrowing = <pclseg.RegionGrowing_t *>regionGrowing.me
+        cRegionGrowing.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return regionGrowing
+
     def make_VFHEstimation(self):
         vfhEstimation = VFHEstimation()
         normalEstimation = self.make_NormalEstimation()

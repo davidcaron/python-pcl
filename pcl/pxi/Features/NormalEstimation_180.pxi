@@ -4,7 +4,7 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 
 cimport pcl_defs as cpp
-cimport pcl_features_172 as pclftr
+cimport pcl_features_180 as pclftr
 
 
 cdef class NormalEstimation:
@@ -40,8 +40,10 @@ cdef class NormalEstimationOMP:
     """
     cdef pclftr.NormalEstimationOMP_t *me
 
-    def __cinit__(self, unsigned int nr_threads=0):
+    def __cinit__(self):
         self.me = new pclftr.NormalEstimationOMP_t()
+
+    def __init__(self, nr_threads=0):
         if nr_threads:
             self.me.setNumberOfThreads(nr_threads)
 

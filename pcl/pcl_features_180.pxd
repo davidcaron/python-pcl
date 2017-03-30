@@ -68,7 +68,7 @@ cdef extern from "pcl/features/feature.h" namespace "pcl":
         # void compute (cpp.PointCloud_PointXYZI_Ptr_t output)
         # void compute (cpp.PointCloud_PointXYZRGB_Ptr_t output)
         # void compute (cpp.PointCloud_PointXYZRGBA_Ptr_t output)
-        void compute (cpp.PointCloud[Out] &output)
+        void compute (cpp.PointCloud[Out] &output) nogil except +
         
         # void computeEigen (cpp.PointCloud[Eigen::MatrixXf] &output);
 
@@ -2330,6 +2330,9 @@ cdef extern from "pcl/features/normal_3d_omp.h" namespace "pcl":
         #     * \param nr_threads the number of hardware threads to use (-1 sets the value back to automatic)
         # */
         inline void setNumberOfThreads (unsigned int nr_threads)
+
+ctypedef NormalEstimationOMP[cpp.PointXYZ, cpp.Normal] NormalEstimationOMP_t
+
 ###
 
 # template <typename PointInT>
