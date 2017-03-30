@@ -591,7 +591,7 @@ cdef extern from "pcl/segmentation/extract_clusters.h" namespace "pcl":
         # brief Cluster extraction in a PointCloud given by <setInputCloud (), setIndices ()>
         # param[out] clusters the resultant point clusters
         # void extract (std::vector<PointIndices> &clusters);
-        void extract (vector[PointIndices] &clusters)
+        void extract (vector[PointIndices] &clusters) nogil
 
 
 ctypedef EuclideanClusterExtraction[PointXYZ] EuclideanClusterExtraction_t
@@ -3036,6 +3036,9 @@ ctypedef ProgressiveMorphologicalFilter[PointXYZRGBA] ProgressiveMorphologicalFi
 #  */
 # template <typename PointT, typename NormalT>
 # class PCL_EXPORTS RegionGrowing : public pcl::PCLBase<PointT>
+cdef extern from "pcl/segmentation/region_growing.h" namespace "pcl":
+    cdef cppclass RegionGrowing[PointT, NormalT](PCLBase[PointT]):
+        RegionGrowing()
         # public:
         # typedef pcl::search::Search <PointT> KdTree;
         # typedef typename KdTree::Ptr KdTreePtr;
@@ -3057,16 +3060,20 @@ ctypedef ProgressiveMorphologicalFilter[PointXYZRGBA] ProgressiveMorphologicalFi
         # 
         # /** \brief Get the minimum number of points that a cluster needs to contain in order to be considered valid. */
         # int getMinClusterSize ();
+        int getMinClusterSize ()
         # 
         # /** \brief Set the minimum number of points that a cluster needs to contain in order to be considered valid. */
         # void setMinClusterSize (int min_cluster_size);
-        # 
+        void setMinClusterSize (int min_cluster_size)
+        #
         # /** \brief Get the maximum number of points that a cluster needs to contain in order to be considered valid. */
         # int getMaxClusterSize ();
-        # 
+        int getMaxClusterSize ()
+        #
         # /** \brief Set the maximum number of points that a cluster needs to contain in order to be considered valid. */
         # void setMaxClusterSize (int max_cluster_size);
-        # 
+        void setMaxClusterSize (int max_cluster_size)
+        #
         # /** \brief Returns the flag value. This flag signalizes which mode of algorithm will be used.
         #  * If it is set to true than it will work as said in the article. This means that
         #  * it will be testing the angle between normal of the current point and it's neighbours normal.
@@ -3074,25 +3081,30 @@ ctypedef ProgressiveMorphologicalFilter[PointXYZRGBA] ProgressiveMorphologicalFi
         #  * and normal of the initial point that was chosen for growing new segment.
         #  */
         # bool getSmoothModeFlag () const;
-        # 
+        const bool getSmoothModeFlag ()
+        #
         # /** \brief This function allows to turn on/off the smoothness constraint.
         #   * \param[in] value new mode value, if set to true then the smooth version will be used.
         #   */
         # void setSmoothModeFlag (bool value);
-        # 
+        void setSmoothModeFlag (bool value)
+        #
         # /** \brief Returns the flag that signalize if the curvature test is turned on/off. */
         # bool getCurvatureTestFlag () const;
-        # 
+        const bool getCurvatureTestFlag ()
+        #
         # /** \brief Allows to turn on/off the curvature test. Note that at least one test
         #   * (residual or curvature) must be turned on. If you are turning curvature test off
         #   * then residual test will be turned on automatically.
         #   *  \param[in] value new value for curvature test. If set to true then the test will be turned on
         #   */
         # virtual void setCurvatureTestFlag (bool value);
-        # 
+        void setCurvatureTestFlag (bool value)
+        #
         # /** \brief Returns the flag that signalize if the residual test is turned on/off. */
         # bool getResidualTestFlag () const;
-        # 
+        const bool getResidualTestFlag ()
+        #
         # /** \brief
         # * Allows to turn on/off the residual test. Note that at least one test
         # * (residual or curvature) must be turned on. If you are turning residual test off
@@ -3100,68 +3112,83 @@ ctypedef ProgressiveMorphologicalFilter[PointXYZRGBA] ProgressiveMorphologicalFi
         # * \param[in] value new value for residual test. If set to true then the test will be turned on
         # */
         # virtual void setResidualTestFlag (bool value);
-        # 
+        void setResidualTestFlag (bool value)
+        #
         # /** \brief Returns smoothness threshold. */
         # float getSmoothnessThreshold () const;
-        # 
+        const float getSmoothnessThreshold ()
+        #
         # /** \brief Allows to set smoothness threshold used for testing the points.
         #   * \param[in] theta new threshold value for the angle between normals
         #   */
         # void setSmoothnessThreshold (float theta);
-        # 
+        void setSmoothnessThreshold (float theta)
+        #
         # /** \brief Returns residual threshold. */
         # float getResidualThreshold () const;
-        # 
+        const float getResidualThreshold ()
+        #
         # /** \brief Allows to set residual threshold used for testing the points.
         # * \param[in] residual new threshold value for residual testing
         # */
         # void setResidualThreshold (float residual);
-        # 
+        void setResidualThreshold (float residual)
+        #
         # /** \brief Returns curvature threshold. */
         # float getCurvatureThreshold () const;
-        # 
+        const float getCurvatureThreshold ()
+        #
         # /** \brief Allows to set curvature threshold used for testing the points.
         #  * \param[in] curvature new threshold value for curvature testing
         #  */
         # void setCurvatureThreshold (float curvature);
-        # 
+        void setCurvatureThreshold (float curvature)
+        #
         # /** \brief Returns the number of nearest neighbours used for KNN. */
         # unsigned int getNumberOfNeighbours () const;
-        # 
+        const unsigned int getNumberOfNeighbours ()
+        #
         # /** \brief Allows to set the number of neighbours. For more information check the article.
         #  * \param[in] neighbour_number number of neighbours to use
         #  */
         # void setNumberOfNeighbours (unsigned int neighbour_number);
-        # 
+        void setNumberOfNeighbours (unsigned int neighbour_number)
+        #
         # /** \brief Returns the pointer to the search method that is used for KNN. */
         # KdTreePtr getSearchMethod () const;
-        # 
+        const pclkdt.KdTreePtr_t getSearchMethod ()
+        #
         # /** \brief Allows to set search method that will be used for finding KNN.
         #  * \param[in] tree pointer to a KdTree
         #  */
         # void setSearchMethod (const KdTreePtr& tree);
-        # 
+        void setSearchMethod (const pclkdt.KdTreePtr_t &tree)
+        #
         # /** \brief Returns normals. */
         # NormalPtr getInputNormals () const;
-        # 
+        const shared_ptr[PointCloud[NormalT]] getInputNormals ()
+        #
         # /** \brief This method sets the normals. They are needed for the algorithm, so if
         #  * no normals will be set, the algorithm would not be able to segment the points.
         #  * \param[in] norm normals that will be used in the algorithm
         #  */
         # void setInputNormals (const NormalPtr& norm);
+        void setInputNormals (const shared_ptr[PointCloud[NormalT]])
         # 
         # /** \brief This method launches the segmentation algorithm and returns the clusters that were
         #   * obtained during the segmentation.
         #   * \param[out] clusters clusters that were obtained. Each cluster is an array of point indices.
         #   */
         # virtual void extract (std::vector <pcl::PointIndices>& clusters);
-        # 
+        void extract (vector[PointIndices] &clusters)
+        #
         # /** \brief For a given point this function builds a segment to which it belongs and returns this segment.
         #  * \param[in] index index of the initial point which will be the seed for growing a segment.
         #  * \param[out] cluster cluster to which the point belongs.
         #  */
         # virtual void getSegmentFromPoint (int index, pcl::PointIndices& cluster);
-        # 
+        void getSegmentFromPoint (int index, PointIndices &cluster)
+        #
         # /** \brief If the cloud was successfully segmented, then function
         #  * returns colored cloud. Otherwise it returns an empty pointer.
         #  * Points that belong to the same segment have the same color.
@@ -3169,7 +3196,8 @@ ctypedef ProgressiveMorphologicalFilter[PointXYZRGBA] ProgressiveMorphologicalFi
         #  * color(it all depends on RNG). Points that were not listed in the indices array will have red color.
         #  */
         # pcl::PointCloud<pcl::PointXYZRGB>::Ptr getColoredCloud ();
-        # 
+        shared_ptr[PointCloud[PointXYZRGB]] getColoredCloud()
+        #
         # /** \brief If the cloud was successfully segmented, then function
         # * returns colored cloud. Otherwise it returns an empty pointer.
         # * Points that belong to the same segment have the same color.
@@ -3177,8 +3205,13 @@ ctypedef ProgressiveMorphologicalFilter[PointXYZRGBA] ProgressiveMorphologicalFi
         # * color(it all depends on RNG). Points that were not listed in the indices array will have red color.
         # */
         # pcl::PointCloud<pcl::PointXYZRGBA>::Ptr getColoredCloudRGBA ();
+        shared_ptr[PointCloud[PointXYZRGBA]] getColoredCloudRGBA()
 
 
+ctypedef RegionGrowing[PointXYZ, Normal] RegionGrowing_t
+ctypedef RegionGrowing[PointXYZI, Normal] RegionGrowing_PointXYZI_t
+ctypedef RegionGrowing[PointXYZRGB, Normal] RegionGrowing_PointXYZRGB_t
+ctypedef RegionGrowing[PointXYZRGBA, Normal] RegionGrowing_PointXYZRGBA_t
 ###
 
 # region_growing_rgb.h

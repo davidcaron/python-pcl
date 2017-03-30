@@ -2282,7 +2282,8 @@ cdef extern from "pcl/features/normal_3d.h" namespace "pcl":
         # * normal estimation method uses the sensor origin of the input cloud.
         # * to use a user defined view point, use the method setViewPoint
         inline void useSensorOriginAsViewPoint ()
-        
+
+
 ctypedef NormalEstimation[cpp.PointXYZ, cpp.Normal] NormalEstimation_t
 ctypedef NormalEstimation[cpp.PointXYZI, cpp.Normal] NormalEstimation_PointXYZI_t
 ctypedef NormalEstimation[cpp.PointXYZRGB, cpp.Normal] NormalEstimation_PointXYZRGB_t
@@ -2330,6 +2331,7 @@ cdef extern from "pcl/features/normal_3d_omp.h" namespace "pcl":
         #     * \param nr_threads the number of hardware threads to use (-1 sets the value back to automatic)
         # */
         inline void setNumberOfThreads (unsigned int nr_threads)
+
 ###
 
 # template <typename PointInT>
@@ -2343,7 +2345,7 @@ cdef extern from "pcl/features/normal_3d_omp.h" namespace "pcl":
 #       using NormalEstimationOMP<PointInT, pcl::Normal>::getViewPoint;
 #       using NormalEstimationOMP<PointInT, pcl::Normal>::threads_;
 #       using NormalEstimationOMP<PointInT, pcl::Normal>::compute;
-# 
+#
 #       /** \brief Default constructor.
 #         */
 #       NormalEstimationOMP () : NormalEstimationOMP<PointInT, pcl::Normal> () {}

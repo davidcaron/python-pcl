@@ -4,7 +4,8 @@
 # common?
 include "PointXYZtoPointXYZ.pxi"
 # Segmentation
-include "Segmentation/Segmentation.pxi"
+include "Segmentation/RegionGrowing_180.pxi"
+include "Segmentation/Segmentation_180.pxi"
 include "Segmentation/SegmentationNormal.pxi"
 include "Segmentation/EuclideanClusterExtraction.pxi"
 # Filters
@@ -16,10 +17,10 @@ include "Surface/MovingLeastSquares.pxi"
 # include "KdTree/KdTree.pxi"
 include "KdTree/KdTree_FLANN.pxi"
 # Octree
-# include "Octree/OctreePointCloud_180.pxi"
-# include "Octree/OctreePointCloud2Buf_180.pxi"
-# include "Octree/OctreePointCloudSearch_180.pxi"
-# include "Octree/OctreePointCloudChangeDetector_180.pxi"
+include "Octree/OctreePointCloud_180.pxi"
+include "Octree/OctreePointCloud2Buf_180.pxi"
+include "Octree/OctreePointCloudSearch_180.pxi"
+include "Octree/OctreePointCloudChangeDetector_180.pxi"
 
 include "Vertices.pxi"
 include "Filters/CropHull_172.pxi"
@@ -31,9 +32,9 @@ include "Filters/ConditionalRemoval.pxi"
 include "Surface/ConcaveHull.pxi"
 include "Common/RangeImage/RangeImages_180.pxi"
 # Registration
-include "registration/GeneralizedIterativeClosestPoint_180.pxi"
-include "registration/IterativeClosestPoint_180.pxi"
-include "registration/IterativeClosestPointNonLinear_180.pxi"
+# include "registration/GeneralizedIterativeClosestPoint_180.pxi"
+# include "registration/IterativeClosestPoint_180.pxi"
+# include "registration/IterativeClosestPointNonLinear_180.pxi"
 # SampleConsensus
 include "SampleConsensus/RandomSampleConsensus.pxi"
 include "SampleConsensus/SampleConsensusModelPlane.pxi"
@@ -48,7 +49,7 @@ include "SampleConsensus/SampleConsensusModelStick.pxi"
 # include "Visualization/PointCloudColorHandlerCustoms.pxi"
 
 # Features
-include "Features/NormalEstimation_172.pxi"
+include "Features/NormalEstimation_180.pxi"
 include "Features/VFHEstimation_172.pxi"
 include "Features/IntegralImageNormalEstimation_172.pxi"
 include "Features/MomentOfInertiaEstimation_172.pxi"
@@ -59,7 +60,7 @@ include "KeyPoint/HarrisKeypoint3D_172.pxi"
 # include "KeyPoint/UniformSampling_172.pxi"
 
 # Registration
-include "registration/NormalDistributionsTransform_180.pxi"
+# include "registration/NormalDistributionsTransform_180.pxi"
 ###
 
 
