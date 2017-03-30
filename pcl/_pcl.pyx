@@ -71,7 +71,8 @@ cdef class _CythonCompareOp_Type:
         readonly int LT
         readonly int LE
         readonly int EQ
-
+
+
     def __cinit__(self):
         self.GT = pcl_fil.COMPAREOP_GT
         self.GE = pcl_fil.COMPAREOP_GE
@@ -136,7 +137,7 @@ include "pxi/PointCloud_PointXYZI.pxi"
 include "pxi/PointCloud_PointXYZRGB.pxi"
 include "pxi/PointCloud_PointXYZRGBA.pxi"
 include "pxi/PointCloud_PointWithViewpoint.pxi"
-# include "pxi/PointCloud_Normal.pxi"
+include "pxi/PointCloud_Normal.pxi"
 include "pxi/PointCloud_PointNormal.pxi"
 # Add PointCloud2
 include "pxi/PointCloud_PointCloud2.pxi"
