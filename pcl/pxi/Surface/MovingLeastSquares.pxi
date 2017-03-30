@@ -23,7 +23,7 @@ cdef class MovingLeastSquares:
         """
         self.me.setSearchRadius (radius)
     
-    def set_polynomial_order(self, bool order):
+    def set_polynomial_order(self, int order):
         """
         Set the order of the polynomial to be fit. 
         """
@@ -79,7 +79,7 @@ cdef class MovingLeastSquares:
 #         """
 #         self.me.setSearchRadius (radius)
 # 
-#     def set_polynomial_order(self, bool order):
+#     def set_polynomial_order(self, int order):
 #         """
 #         Set the order of the polynomial to be fit. 
 #         """
@@ -121,7 +121,7 @@ cdef class MovingLeastSquares_PointXYZRGB:
         """
         self.me.setSearchRadius (radius)
     
-    def set_polynomial_order(self, bool order):
+    def set_polynomial_order(self, int order):
         """
         Set the order of the polynomial to be fit. 
         """
@@ -165,7 +165,7 @@ cdef class MovingLeastSquares_PointXYZRGBA:
         """
         self.me.setSearchRadius (radius)
     
-    def set_polynomial_order(self, bool order):
+    def set_polynomial_order(self, int order):
         """
         Set the order of the polynomial to be fit. 
         """
