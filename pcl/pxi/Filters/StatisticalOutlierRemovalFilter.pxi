@@ -63,6 +63,15 @@ cdef class StatisticalOutlierRemovalFilter:
         self.me.filter(pc.thisptr()[0])
         return pc
 
+    def filter_indices(self):
+        """
+        Apply the filter according to the previously set parameters and return
+        indices
+        """
+        cdef vector[int] indices
+        self.me.filter(indices)
+        return np.array(indices, dtype=np.int)
+
 
 cdef class StatisticalOutlierRemovalFilter_PointXYZI:
     """
@@ -124,6 +133,15 @@ cdef class StatisticalOutlierRemovalFilter_PointXYZI:
         cdef PointCloud_PointXYZI pc = PointCloud_PointXYZI()
         self.me.filter(pc.thisptr()[0])
         return pc
+
+    def filter_indices(self):
+        """
+        Apply the filter according to the previously set parameters and return
+        indices
+        """
+        cdef vector[int] indices
+        self.me.filter(indices)
+        return np.array(indices, dtype=np.int)
 
 
 cdef class StatisticalOutlierRemovalFilter_PointXYZRGB:
@@ -187,6 +205,15 @@ cdef class StatisticalOutlierRemovalFilter_PointXYZRGB:
         self.me.filter(pc.thisptr()[0])
         return pc
 
+    def filter_indices(self):
+        """
+        Apply the filter according to the previously set parameters and return
+        indices
+        """
+        cdef vector[int] indices
+        self.me.filter(indices)
+        return np.array(indices, dtype=np.int)
+
 
 cdef class StatisticalOutlierRemovalFilter_PointXYZRGBA:
     """
@@ -248,4 +275,13 @@ cdef class StatisticalOutlierRemovalFilter_PointXYZRGBA:
         cdef PointCloud_PointXYZRGBA pc = PointCloud_PointXYZRGBA()
         self.me.filter(pc.thisptr()[0])
         return pc
+
+    def filter_indices(self):
+        """
+        Apply the filter according to the previously set parameters and return
+        indices
+        """
+        cdef vector[int] indices
+        self.me.filter(indices)
+        return np.array(indices, dtype=np.int)
 
