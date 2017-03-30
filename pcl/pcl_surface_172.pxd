@@ -2241,7 +2241,7 @@ ctypedef MovingLeastSquares[cpp.PointXYZI, cpp.PointXYZI] MovingLeastSquares_Poi
 ctypedef MovingLeastSquares[cpp.PointXYZRGB, cpp.PointXYZRGB] MovingLeastSquares_PointXYZRGB_t
 ctypedef MovingLeastSquares[cpp.PointXYZRGBA, cpp.PointXYZRGBA] MovingLeastSquares_PointXYZRGBA_t
 # NG
-# ctypedef MovingLeastSquares[cpp.PointXYZ, cpp.PointNormal] MovingLeastSquares_t
+ctypedef MovingLeastSquares[cpp.PointXYZ, cpp.PointNormal] MovingLeastSquaresNormal_t
 # ctypedef MovingLeastSquares[cpp.PointXYZI, cpp.PointNormal] MovingLeastSquares_PointXYZI_t
 # ctypedef MovingLeastSquares[cpp.PointXYZRGB, cpp.PointNormal] MovingLeastSquares_PointXYZRGB_t
 # ctypedef MovingLeastSquares[cpp.PointXYZRGBA, cpp.PointNormal] MovingLeastSquares_PointXYZRGBA_t

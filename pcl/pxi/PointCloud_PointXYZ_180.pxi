@@ -335,15 +335,21 @@ cdef class PointCloud:
         Return a pcl.MovingLeastSquares object with this object as input cloud.
         """
         if normals:
-            mls = MovingLeastSquaresNormal()
-            cdef pclsf.MovingLeastSquaresNormal_t *cmls = <pclsf.MovingLeastSquaresNormal_t *>mls.me
-            cmls.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-            return mls
+            return self._make_moving_least_squares_normals()
         else:
-            mls = MovingLeastSquares()
-            cdef pclsf.MovingLeastSquares_t *cmls = <pclsf.MovingLeastSquares_t *>mls.me
-            cmls.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-            return mls
+            return self._make_moving_least_squares()
+
+    def _make_moving_least_squares(self):
+        mls = MovingLeastSquares()
+        cdef pclsf.MovingLeastSquares_t *cmls = <pclsf.MovingLeastSquares_t *>mls.me
+        cmls.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return mls
+
+    def _make_moving_least_squares_normals(self):
+        mls = MovingLeastSquaresNormal()
+        cdef pclsf.MovingLeastSquaresNormal_t *cmls_normals = <pclsf.MovingLeastSquaresNormal_t *>mls.me
+        cmls_normals.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return mls
 
     def make_kdtree(self):
         """
@@ -527,23 +533,23 @@ cdef class PointCloud:
         cEuclideanClusterExtraction.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
         return euclideanclusterextraction
 
-    def make_GeneralizedIterativeClosestPoint(self):
-        generalizedIterativeClosestPoint = GeneralizedIterativeClosestPoint(self)
-        cdef pcl_reg.GeneralizedIterativeClosestPoint_t *cGeneralizedIterativeClosestPoint = <pcl_reg.GeneralizedIterativeClosestPoint_t *>generalizedIterativeClosestPoint.me
-        cGeneralizedIterativeClosestPoint.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-        return generalizedIterativeClosestPoint
-
-    def make_IterativeClosestPointNonLinear(self):
-        iterativeClosestPointNonLinear = IterativeClosestPointNonLinear(self)
-        cdef pcl_reg.IterativeClosestPointNonLinear_t *cIterativeClosestPointNonLinear = <pcl_reg.IterativeClosestPointNonLinear_t *>iterativeClosestPointNonLinear.me
-        cIterativeClosestPointNonLinear.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-        return iterativeClosestPointNonLinear
-
-    def make_IterativeClosestPoint(self):
-        iterativeClosestPoint = IterativeClosestPoint(self)
-        cdef pcl_reg.IterativeClosestPoint_t *cIterativeClosestPoint = <pcl_reg.IterativeClosestPoint_t *>iterativeClosestPoint.me
-        cIterativeClosestPoint.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-        return iterativeClosestPoint
+    # def make_GeneralizedIterativeClosestPoint(self):
+    #     generalizedIterativeClosestPoint = GeneralizedIterativeClosestPoint(self)
+    #     cdef pcl_reg.GeneralizedIterativeClosestPoint_t *cGeneralizedIterativeClosestPoint = <pcl_reg.GeneralizedIterativeClosestPoint_t *>generalizedIterativeClosestPoint.me
+    #     cGeneralizedIterativeClosestPoint.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+    #     return generalizedIterativeClosestPoint
+    #
+    # def make_IterativeClosestPointNonLinear(self):
+    #     iterativeClosestPointNonLinear = IterativeClosestPointNonLinear(self)
+    #     cdef pcl_reg.IterativeClosestPointNonLinear_t *cIterativeClosestPointNonLinear = <pcl_reg.IterativeClosestPointNonLinear_t *>iterativeClosestPointNonLinear.me
+    #     cIterativeClosestPointNonLinear.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+    #     return iterativeClosestPointNonLinear
+    #
+    # def make_IterativeClosestPoint(self):
+    #     iterativeClosestPoint = IterativeClosestPoint(self)
+    #     cdef pcl_reg.IterativeClosestPoint_t *cIterativeClosestPoint = <pcl_reg.IterativeClosestPoint_t *>iterativeClosestPoint.me
+    #     cIterativeClosestPoint.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+    #     return iterativeClosestPoint
 
     def make_MomentOfInertiaEstimation(self):
         momentofinertiaestimation = MomentOfInertiaEstimation(self)

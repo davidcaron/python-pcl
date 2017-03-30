@@ -346,15 +346,21 @@ cdef class PointCloud:
         Return a pcl.MovingLeastSquares object with this object as input cloud.
         """
         if normals:
-            mls = MovingLeastSquaresNormal()
-            cdef pclsf.MovingLeastSquaresNormal_t *cmls = <pclsf.MovingLeastSquaresNormal_t *>mls.me
-            cmls.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-            return mls
+            return self._make_moving_least_squares_normals()
         else:
-            mls = MovingLeastSquares()
-            cdef pclsf.MovingLeastSquares_t *cmls = <pclsf.MovingLeastSquares_t *>mls.me
-            cmls.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
-            return mls
+            return self._make_moving_least_squares()
+
+    def _make_moving_least_squares(self):
+        mls = MovingLeastSquares()
+        cdef pclsf.MovingLeastSquares_t *cmls = <pclsf.MovingLeastSquares_t *>mls.me
+        cmls.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return mls
+
+    def _make_moving_least_squares_normals(self):
+        mls = MovingLeastSquaresNormal()
+        cdef pclsf.MovingLeastSquaresNormal_t *cmls_normals = <pclsf.MovingLeastSquaresNormal_t *>mls.me
+        cmls_normals.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return mls
 
     def make_kdtree(self):
         """
