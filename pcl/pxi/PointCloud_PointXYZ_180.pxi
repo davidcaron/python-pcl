@@ -539,6 +539,12 @@ cdef class PointCloud:
         # cdef pcl_r_img.RangeImage_t *cRangeImage = <pcl_r_img.RangeImage_t *>rangeImages.me
         return rangeImages
 
+    def make_ApproximateProgressiveMorphologicalFilter(self):
+        apmf = ApproximateProgressiveMorphologicalFilter(self)
+        cdef pclseg.ApproximateProgressiveMorphologicalFilter_t *cApproximateProgressiveMorphologicalFilter = <pclseg.ApproximateProgressiveMorphologicalFilter_t *>apmf.me
+        cApproximateProgressiveMorphologicalFilter.setInputCloud(<cpp.shared_ptr[cpp.PointCloud[cpp.PointXYZ]]> self.thisptr_shared)
+        return apmf
+
     def make_EuclideanClusterExtraction(self):
         euclideanclusterextraction = EuclideanClusterExtraction(self)
         cdef pclseg.EuclideanClusterExtraction_t *cEuclideanClusterExtraction = <pclseg.EuclideanClusterExtraction_t *>euclideanclusterextraction.me

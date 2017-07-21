@@ -1583,6 +1583,9 @@ cdef extern from "pcl/segmentation/extract_polygonal_prism_data.h" namespace "pc
 # */
 # template <typename PointT>
 # class PCL_EXPORTS ApproximateProgressiveMorphologicalFilter : public pcl::PCLBase<PointT>
+cdef extern from "pcl/segmentation/approximate_progressive_morphological_filter.h" namespace "pcl":
+    cdef cppclass ApproximateProgressiveMorphologicalFilter[PointT](PCLBase[PointT]):
+        ApproximateProgressiveMorphologicalFilter()
         # public:
         # typedef pcl::PointCloud <PointT> PointCloud;
         # using PCLBase <PointT>::input_;
@@ -1597,45 +1600,59 @@ cdef extern from "pcl/segmentation/extract_polygonal_prism_data.h" namespace "pc
         # 
         # /** \brief Get the maximum window size to be used in filtering ground returns. */
         # inline int getMaxWindowSize () const { return (max_window_size_); }
+        int getMaxWindowSize ()
         # 
         # /** \brief Set the maximum window size to be used in filtering ground returns. */
         # inline void setMaxWindowSize (int max_window_size) { max_window_size_ = max_window_size; }
+        void setMaxWindowSize (int max_window_size)
         # 
         # /** \brief Get the slope value to be used in computing the height threshold. */
         # inline float getSlope () const { return (slope_); }
+        float getSlope ()
         # 
         # /** \brief Set the slope value to be used in computing the height threshold. */
         # inline void setSlope (float slope) { slope_ = slope; }
+        void setSlope (float slope)
         # 
         # /** \brief Get the maximum height above the parameterized ground surface to be considered a ground return. */
         # inline float getMaxDistance () const { return (max_distance_); }
+        float getMaxDistance ()
         # 
         # /** \brief Set the maximum height above the parameterized ground surface to be considered a ground return. */
         # inline void setMaxDistance (float max_distance) { max_distance_ = max_distance; }
+        void setMaxDistance (float max_distance)
         # 
         # /** \brief Get the initial height above the parameterized ground surface to be considered a ground return. */
         # inline float getInitialDistance () const { return (initial_distance_); }
+        float getInitialDistance ()
         # 
         # /** \brief Set the initial height above the parameterized ground surface to be considered a ground return. */
         # inline void setInitialDistance (float initial_distance) { initial_distance_ = initial_distance; }
+        void setInitialDistance (float initial_distance)
         # 
         # /** \brief Get the cell size. */
         # inline float getCellSize () const { return (cell_size_); }
+        float getCellSize ()
         # 
         # /** \brief Set the cell size. */
         # inline void setCellSize (float cell_size) { cell_size_ = cell_size; }
+        void setCellSize (float cell_size)
         # 
         # /** \brief Get the base to be used in computing progressive window sizes. */
         # inline float getBase () const { return (base_); }
+        float getBase ()
         # 
         # /** \brief Set the base to be used in computing progressive window sizes. */
         # inline void setBase (float base) { base_ = base; }
+        void setBase (float base)
         # 
         # /** \brief Get flag indicating whether or not to exponentially grow window sizes? */
         # inline bool getExponential () const { return (exponential_); }
+        bool getExponential ()
         # 
         # /** \brief Set flag indicating whether or not to exponentially grow window sizes? */
         # inline void setExponential (bool exponential) { exponential_ = exponential; }
+        void setExponential (bool exponential)
         # 
         # /** \brief Initialize the scheduler and set the number of threads to use.
         # * \param nr_threads the number of hardware threads to use (0 sets the value back to automatic)
@@ -1647,7 +1664,13 @@ cdef extern from "pcl/segmentation/extract_polygonal_prism_data.h" namespace "pc
         # * \param[out] ground indices of points determined to be ground returns.
         # */
         # virtual void extract (std::vector<int>& ground);
+        void extract (vector[int]& ground)
 
+
+ctypedef ApproximateProgressiveMorphologicalFilter[PointXYZ] ApproximateProgressiveMorphologicalFilter_t
+ctypedef ApproximateProgressiveMorphologicalFilter[PointXYZI] ApproximateProgressiveMorphologicalFilter_PointXYZI_t
+ctypedef ApproximateProgressiveMorphologicalFilter[PointXYZRGB] ApproximateProgressiveMorphologicalFilter_PointXYZRGB_t
+ctypedef ApproximateProgressiveMorphologicalFilter[PointXYZRGBA] ApproximateProgressiveMorphologicalFilter_PointXYZRGBA_t
 
 ###
 

@@ -8,6 +8,7 @@ include "Segmentation/RegionGrowing_180.pxi"
 include "Segmentation/Segmentation_180.pxi"
 include "Segmentation/SegmentationNormal.pxi"
 include "Segmentation/EuclideanClusterExtraction.pxi"
+include "Segmentation/ApproximateProgressiveMorphologicalFilter_180.pxi"
 # Filters
 include "Filters/StatisticalOutlierRemovalFilter.pxi"
 include "Filters/VoxelGridFilter_172.pxi"
